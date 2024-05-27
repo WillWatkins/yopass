@@ -25,11 +25,11 @@ services:
       - html:/usr/share/nginx/html
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
-  memcached:
-    image: memcached
+  redis:
+    image: redis
     restart: always
     expose:
-      - "11211"
+      - "6379"
 
   yopass:
     image: jhaals/yopass
@@ -38,14 +38,13 @@ services:
       - VIRTUAL_HOST=subdomain.yourdomain.tld
       - LETSENCRYPT_HOST=subdomain.yourdomain.tld
       - LETSENCRYPT_EMAIL=mail@yourdomain.tld
-    command: "--memcached=memcached:11211 --port 80"
+      - REDIS_URL=redis:6379
+    command: "--redis=redis:6379 --port 80"
     expose:
       - "80"
 
-# yamllint disable rule:empty-values
 volumes:
   certs:
   vhost.d:
   html:
   acme.sh:
-# yamllint enable rule:empty-values

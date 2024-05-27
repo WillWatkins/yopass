@@ -1,15 +1,17 @@
 version: "3.0"
 
 services:
-  memcached:
-    image: memcached
+  redis:
+    image: redis
     restart: always
-    expose:
-      - "11211"
+    ports:
+      - "6379:6379"
 
   yopass:
     image: jhaals/yopass
     restart: always
     ports:
       - "127.0.0.1:80:80"
-    command: "--memcached=memcached:11211 --port 80"
+    environment:
+      - REDIS_URL=redis:6379
+    command: "--redis=redis:6379 --port 80"
