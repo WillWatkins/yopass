@@ -29,7 +29,7 @@ services:
     image: redis
     restart: always
     expose:
-      - "6379"
+      - "2506"
 
   yopass:
     image: jhaals/yopass
@@ -38,8 +38,8 @@ services:
       - VIRTUAL_HOST=${HOST}
       - LETSENCRYPT_HOST=${HOST}
       - LETSENCRYPT_EMAIL=${EMAIL}
-      - REDIS_URL=redis:6379
-    command: "--redis=redis:6379 --port 80"
+      - REDIS_URL=redis:2506
+    command: "--redis=redis:2506 --port 80"
     expose:
       - "80"
 
