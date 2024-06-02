@@ -35,9 +35,9 @@ services:
     image: jhaals/yopass
     restart: always
     environment:
-      - VIRTUAL_HOST=subdomain.yourdomain.tld
-      - LETSENCRYPT_HOST=subdomain.yourdomain.tld
-      - LETSENCRYPT_EMAIL=mail@yourdomain.tld
+      - VIRTUAL_HOST=${HOST}
+      - LETSENCRYPT_HOST=${HOST}
+      - LETSENCRYPT_EMAIL=${EMAIL}
       - REDIS_URL=redis:6379
     command: "--redis=redis:6379 --port 80"
     expose:

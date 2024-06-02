@@ -11,7 +11,7 @@ services:
     image: jhaals/yopass
     restart: always
     ports:
-      - "127.0.0.1:80:80"
+      - "127.0.0.1:8080:8080"
     environment:
       - REDIS_URL=redis:6379
-    command: "--redis=redis:6379 --port 80"
+    command: "--redis=redis:6379 --port 8080"
